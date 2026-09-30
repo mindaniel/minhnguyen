@@ -64,8 +64,7 @@ of `assets/css/style.css`. Changing `--navy-800` and `--accent` re-themes the wh
 
 ## Before publishing — placeholders to replace
 
-- LinkedIn URL (`https://www.linkedin.com/`) in `index.html` (hero card + footer)
-- Google Scholar URL (`https://scholar.google.com/`) in `index.html`
+- Optional: add a Google Scholar profile link next to LinkedIn and ORCID in `index.html`
 - Portrait: save a square photo (~800×800, under 300 KB) as `assets/img/portrait.jpg`.
   Until it exists, a navy circle with initials shows instead.
 - CV: `assets/cv/CV_NguyenQuangMinh.pdf` — overwrite with the same filename to update.
