@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is Biodiversity Risk Priced in Mutual Funds? — Quang Minh Nguyen</title>
+<meta name="description" content="Working paper: whether the firm-level biodiversity risk premium is transmitted into mutual fund returns, using a double-materiality BioScore, decile sorts, and Fama-MacBeth regressions.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<!-- MathJax: write LaTeX inline with \( ... \) or $...$, display with \[ ... \] or $$...$$ -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)'], ['$', '$']],
+    displayMath: [['\\[', '\\]'], ['$$', '$$']],
+    processEscapes: true,
+    tags: 'ams'
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html">
+      Quang Minh Nguyen
+      <span>PhD Candidate in Finance</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+      Menu
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="index.html#publications">Publications</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#awards">Awards</a></li>
+        <li><a href="research.html" aria-current="page">Working Paper</a></li>
+        <li><a href="assets/cv/CV_NguyenQuangMinh.pdf" target="_blank" rel="noopener">CV</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="paper-title">
+    <div class="wrap wrap--narrow">
+      <p class="hero__eyebrow">Working paper · Job market paper in progress</p>
+      <h1 id="paper-title">Is Biodiversity Risk Priced in Mutual Funds?</h1>
+      <p class="hero__lede">
+        Does the firm-level biodiversity risk premium survive aggregation into mutual fund
+        returns, or do diversification and fees dilute the signal?
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--ghost" href="index.html">&larr; Back to profile</a>
+        <a class="btn btn--primary" href="mailto:qmn1@st-andrews.ac.uk?subject=Working%20paper%3A%20Is%20biodiversity%20risk%20priced%20in%20mutual%20funds%3F">Request the draft</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="abstract-title">
+    <div class="wrap wrap--narrow">
+      <div class="paper">
+        <span class="paper__status">Abstract</span>
+        <h2 id="abstract-title" class="visually-hidden">Abstract</h2>
+        <div class="abstract">
+          <p>
+            This paper investigates whether the firm-level biodiversity risk premium is
+            transmitted into mutual fund returns, or if aggregation, diversification, and fund
+            fees dilute the risk signal. Building on the equilibrium framework of
+            Pástor et al. (2021), we analyse an unbalanced panel of 10,366 active equity mutual
+            funds from December 2006 to February 2025 using LSEG data. Fund-level biodiversity
+            exposure is captured via a novel <em>BioScore</em> that maps industry-specific nature
+            dependencies (ENCORE) against regional ecological fragility (WRI Aqueduct) under a
+            double-materiality framework.
+          </p>
+          <p>
+            Using decile portfolio sorts and Fama–MacBeth cross-sectional regressions, we find
+            that the biodiversity risk premium is highly dependent on the regional regulatory
+            environment. In Europe, where coordinated frameworks (GBF, SFDR) provide clear
+            pricing signals, high-biodiversity-risk funds generate significant risk-adjusted
+            returns that compensate investors for nature-negative exposure. Conversely, in the
+            United States, where environmental regulation remains fragmented, the premium is not
+            statistically significant.
+          </p>
+          <p style="margin-bottom:0">
+            This study provides the first empirical evidence of how biodiversity risk survives
+            mutual fund aggregation, offering insights for fiduciaries, asset managers, and
+            regulators navigating nature-related financial disclosures.
+          </p>
+        </div>
+      </div>
+
+      <ul class="stats" aria-label="Study at a glance">
+        <li><dt>Funds</dt><dd>10,366</dd></li>
+        <li><dt>Sample period</dt><dd>2006–2025</dd></li>
+        <li><dt>Data source</dt><dd>LSEG</dd></li>
+        <li><dt>Panel</dt><dd>Unbalanced</dd></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-labelledby="method-title">
+    <div class="wrap wrap--narrow">
+      <p class="section__label">Method</p>
+      <h2 id="method-title">Empirical strategy</h2>
+
+      <h3>1. Constructing the BioScore</h3>
+      <p>
+        Fund-level biodiversity exposure is built bottom-up from holdings. For fund \(i\) at
+        time \(t\), the score is the value-weighted average of holding-level biodiversity
+        intensity, where each holding's intensity is the product of its industry's nature
+        dependency (ENCORE) and the ecological fragility of the region in which it operates
+        (WRI Aqueduct):
+      </p>
+
+      <div class="math-block">
+        \[
+          \mathrm{BioScore}_{i,t}
+            = \sum_{j=1}^{N_{i,t}} w_{j,i,t}
+              \left( D_{s(j)} \times F_{r(j)} \right)
+        \]
+        <span class="math-note">
+          \(w_{j,i,t}\) is the portfolio weight of holding \(j\); \(D_{s(j)}\) the ENCORE
+          dependency score of sector \(s(j)\); \(F_{r(j)}\) the Aqueduct fragility score of
+          region \(r(j)\); \(N_{i,t}\) the number of holdings.
+        </span>
+      </div>
+
+      <h3>2. Portfolio sorts</h3>
+      <p>
+        Funds are sorted into deciles on \(\mathrm{BioScore}_{i,t-1}\) and rebalanced monthly.
+        The spread portfolio is long the top decile and short the bottom decile, and its
+        risk-adjusted return is the intercept of a Fama–French five-factor plus momentum
+        regression:
+      </p>
+
+      <div class="math-block">
+        \[
+          R^{\,\mathrm{H\!-\!L}}_{t}
+            = \alpha
+            + \beta_{\mathrm{MKT}}\,\mathrm{MKT}_t
+            + \beta_{\mathrm{SMB}}\,\mathrm{SMB}_t
+            + \beta_{\mathrm{HML}}\,\mathrm{HML}_t
+            + \beta_{\mathrm{RMW}}\,\mathrm{RMW}_t
+            + \beta_{\mathrm{CMA}}\,\mathrm{CMA}_t
+            + \beta_{\mathrm{MOM}}\,\mathrm{MOM}_t
+            + \varepsilon_t
+        \]
+        <span class="math-note">
+          A significant \(\alpha\) indicates a biodiversity risk premium not explained by
+          conventional factor exposures.
+        </span>
+      </div>
+
+      <h3>3. Fama–MacBeth cross-sectional regressions</h3>
+      <p>
+        In the first stage, a cross-sectional regression is estimated in each month \(t\);
+        in the second stage, the time series of the resulting coefficients is averaged:
+      </p>
+
+      <div class="math-block">
+        \[
+          R_{i,t+1}
+            = \gamma_{0,t}
+            + \gamma_{1,t}\,\mathrm{BioScore}_{i,t}
+            + \boldsymbol{\gamma}_{2,t}^{\prime}\, \mathbf{X}_{i,t}
+            + \epsilon_{i,t+1},
+          \qquad
+          \hat{\gamma}_1 = \frac{1}{T}\sum_{t=1}^{T} \hat{\gamma}_{1,t}
+        \]
+        <span class="math-note">
+          \(\mathbf{X}_{i,t}\) collects fund controls (size, age, expense ratio, turnover, flow,
+          factor loadings). Standard errors are Newey–West adjusted for autocorrelation.
+        </span>
+      </div>
+
+      <h3>4. Regional split</h3>
+      <p>
+        The panel is partitioned by the regulatory environment of the fund's domicile. Europe
+        operates under coordinated frameworks — the Kunming-Montreal Global Biodiversity
+        Framework (GBF) and the Sustainable Finance Disclosure Regulation (SFDR) — while the
+        United States remains fragmented. Comparing \(\hat{\gamma}_1\) across the two subsamples
+        isolates the role of regulation in generating a pricing signal.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="data-title">
+    <div class="wrap wrap--narrow">
+      <p class="section__label">Data</p>
+      <h2 id="data-title">Sources</h2>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Primary data inputs and their role in the study</caption>
+          <thead>
+            <tr>
+              <th scope="col">Source</th>
+              <th scope="col">Content</th>
+              <th scope="col">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LSEG / Refinitiv</td>
+              <td>Fund returns, holdings, fees, and characteristics</td>
+              <td>Panel construction</td>
+            </tr>
+            <tr>
+              <td>ENCORE</td>
+              <td>Industry-level dependencies on ecosystem services</td>
+              <td>Dependency term \(D_s\)</td>
+            </tr>
+            <tr>
+              <td>WRI Aqueduct</td>
+              <td>Regional water and ecological stress indicators</td>
+              <td>Fragility term \(F_r\)</td>
+            </tr>
+            <tr>
+              <td>Fama–French / Kenneth French library</td>
+              <td>Five factors plus momentum</td>
+              <td>Risk adjustment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Findings in brief</h3>
+      <ul>
+        <li><strong>Europe:</strong> high-biodiversity-risk funds earn significant risk-adjusted returns, compensating investors for nature-negative exposure.</li>
+        <li><strong>United States:</strong> the premium is not statistically significant under fragmented environmental regulation.</li>
+        <li><strong>Implication:</strong> regulatory coordination, not exposure alone, is what turns biodiversity risk into a priced factor.</li>
+      </ul>
+
+      <h3>Related work</h3>
+      <p>
+        Nguyen, Q. M., &amp; Li, X. (2026). Assessing the impact of biodiversity risk exposure on
+        performance of U.S. listed firms. <em>Journal of Economic and Banking Studies</em>, 6(1),
+        101–118.
+        <a href="https://doi.org/10.59276/JEBS.2026.06.2714" rel="noopener">doi:10.59276/JEBS.2026.06.2714</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div>
+        <h2>Working paper enquiries</h2>
+        <p>The current draft is available on request. Comments and collaboration welcome.</p>
+      </div>
+      <div>
+        <h4 style="color:#fff">Contact</h4>
+        <ul>
+          <li><a href="mailto:qmn1@st-andrews.ac.uk">qmn1@st-andrews.ac.uk</a></li>
+          <li><a href="mailto:quangminhh014@gmail.com">quangminhh014@gmail.com</a></li>
+          <li>St Andrews, Scotland</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#fff">Navigate</h4>
+        <ul>
+          <li><a href="index.html">Profile</a></li>
+          <li><a href="index.html#publications">Publications</a></li>
+          <li><a href="index.html#references">References</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <span>&copy; <span id="year">2026</span> Quang Minh Nguyen</span>
+      <span>Equations rendered with MathJax.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
